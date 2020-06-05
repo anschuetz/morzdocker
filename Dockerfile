@@ -26,7 +26,7 @@ RUN set -ex; \
     ; \
     \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
-    rm /usr/include/gmp.h; \
+    [[ -e /usr/include/gmp.h ]] && rm /usr/include/gmp.h; \
     ln -s "/usr/include/$(dpkg-architecture --query DEB_BUILD_MULTIARCH)/gmp.h" /usr/include/gmp.h; \
     docker-php-ext-install \
         bz2 \
